@@ -5,10 +5,17 @@ import Header from './components/Header.vue';
 
 <template>
   <Header />
-  <template>
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  </template>
-  <RouterView />
+  <Suspense>
+    <RouterView />
+  </Suspense>
 </template>
+
+<style>
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-slate-50 text-slate-800 dark:bg-slate-800 dark:text-slate-50;
+}
+</style>
