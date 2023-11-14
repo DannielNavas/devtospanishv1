@@ -12,8 +12,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@tabler/icons-vue": "^2.39.0",
+    "@tabler/icons-vue": "2.39.0",
+    "@vueuse/core": "10.6.0",
     "vue": "^3.3.4",
+    "vue-loading-overlay": "6.0.3",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
@@ -29,6 +31,7 @@
     "eslint-plugin-vue": "^9.17.0",
     "npm-run-all2": "^6.0.6",
     "postcss": "^8.4.31",
+    "postcss-preset-env": "^9.3.0",
     "prettier": "^3.0.3",
     "tailwindcss": "^3.3.3",
     "typescript": "~5.2.0",
