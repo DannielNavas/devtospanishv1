@@ -8,9 +8,6 @@ const isDark = useDark();
 const toggleDark = useToggle(isDark);
 
 const isDarkMode = computed(() => {
-    // if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    //     return 'dark';
-    // }
     if (isDark.value) {
         return 'dark';
     }
