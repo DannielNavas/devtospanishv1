@@ -5,54 +5,17 @@ import { computed, defineProps, toRefs } from 'vue';
 
 
 const props = defineProps({
-    title: {
-        type: String,
+    article: {
+        type: Object,
         required: true,
-        default: 'Title',
     },
-    description: {
-        type: String,
-        required: true,
-        default: 'Description',
-    },
-    date: {
-        type: String,
-        required: true,
-        default: new Date().toLocaleDateString(),
-    },
-    image: {
-        type: String,
-        required: true,
-        default: 'https://picsum.photos/200/300',
-    },
-    url: {
-        type: String,
-        required: true,
-        default: 'https://google.com',
-    },
-    author: {
-        type: String,
-        required: true,
-        default: 'Author',
-    },
-    reactions: {
-        type: Number,
-        required: true,
-        default: 0,
-    },
-    comments: {
-        type: Number,
-        required: true,
-        default: 0,
-    },
-    readingTime: {
-        type: Number,
-        required: true,
-        default: 0,
-    }
 });
 
-const { title, description, date, image, url, reactions, comments } = toRefs(props);
+const { article } = toRefs(props);
+
+const { comments_count, description, cover_image, social_image, public_reactions_count, reading_time_minutes, title, url, published_at, user } = article.value;
+
+const { name, username } = user;
 
 const share = async (url: string, title: string, description: string) => {
     event?.preventDefault();
@@ -73,7 +36,7 @@ const share = async (url: string, title: string, description: string) => {
 }
 
 const dateFormat = computed(() => {
-    const newDate = new Date(date.value);
+    const newDate = new Date(published_at);
     return newDate.toLocaleString('es-ES', {
         day: 'numeric',
         month: 'long',
@@ -85,13 +48,16 @@ const dateFormat = computed(() => {
 <template>
     <a :href="url" target="_blank" rel="noopener noreferrer">
         <article class="lg:w-96 sm:w-72 h-max border-slate-800 rounded-lg border border-current p-4 dark:border-slate-50">
-            <p class="text-xs w-full">{{ author }}</p>
-            <img :src="image" :alt="title" class="w-full h-36 object-fill rounded-lg" loading="lazy">
+            <router-link :to="`/articles-user/${username}`">
+                <p class="text-sm w-full mb-4 hover:text-slate-400">{{ name
+                }}</p>
+            </router-link>
+            <img :src="cover_image ?? social_image" :alt="title" class="w-full h-36 object-fill rounded-lg" loading="lazy">
             <div class="flex justify-between items-center mt-3">
                 <p class="text-xs">{{ dateFormat }}</p>
-                <p class="text-xs">{{ readingTime }}
+                <p class="text-xs">{{ reading_time_minutes }}
                     <span>
-                        {{ readingTime === 1 ? 'minuto' : 'minutos' }} de lectura
+                        {{ reading_time_minutes === 1 ? 'minuto' : 'minutos' }} de lectura
                     </span>
                 </p>
             </div>
@@ -101,11 +67,11 @@ const dateFormat = computed(() => {
                 <!-- icons -->
                 <div class="flex justify-center items-center gap-2">
                     <IconHeart class="text-red-500" />
-                    <p class="m-0 text-lg">{{ reactions }}</p>
+                    <p class="m-0 text-lg">{{ public_reactions_count }}</p>
                 </div>
                 <div class="flex justify-center items-center gap-2">
                     <IconMessage class="text-blue-500" />
-                    <p class="m-0 text-lg">{{ comments }}</p>
+                    <p class="m-0 text-lg">{{ comments_count }}</p>
                 </div>
                 <IconShare2 class="text-green-500" @click="share(url, title, description)" />
             </div>
