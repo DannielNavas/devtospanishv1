@@ -1,6 +1,6 @@
 <template>
     <loading :active="isLoading" :can-cancel="true" :on-cancel="onCancel" :is-full-page="fullPage" />
-    <HeaderUser :user="user" />
+    <HeaderUser :userData="userData" v-if="userData" />
     <Suspense>
         <main class="w-screen h-full flex flex-wrap gap-8 justify-center px-16 mt-6">
             <Card suspense v-for="article in allPostsUser" :key="article.id" :article="article">
@@ -22,7 +22,7 @@ import 'vue-loading-overlay/dist/css/index.css';
 let isLoading = ref(true);
 const fullPage = ref(true);
 const posts = ref([]);
-const user = ref({});
+const userData = ref();
 const props = defineProps({
     username: {
         type: String,
@@ -45,7 +45,7 @@ const getDataUser = () => {
         .then((response) => response.json())
         .then((data) => {
             isLoading.value = false;
-            user.value = data;
+            userData.value = data;
         });
 };
 
