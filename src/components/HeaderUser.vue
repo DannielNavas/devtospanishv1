@@ -23,10 +23,12 @@ const { name, username, profile_image, summary, website_url, location, twitter_u
             <a :href="website_url" target="_blank" rel="noopener noreferrer" v-if="website_url">
                 <IconWorldWww :size="34" />
             </a>
-            <a :href="twitter_username" target="_blank" rel="noopener noreferrer" v-if="twitter_username">
+            <a :href="'https://twitter.com/' + twitter_username" target="_blank" rel="noopener noreferrer"
+                v-if="twitter_username">
                 <IconBrandX :size="34" />
             </a>
-            <a :href="github_username" target="_blank" rel="noopener noreferrer" v-if="github_username">
+            <a :href="'https://github.com/' + github_username" target="_blank" rel="noopener noreferrer"
+                v-if="github_username">
                 <IconBrandGithub :size="34" />
             </a>
         </div>
