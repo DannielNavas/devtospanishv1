@@ -48,16 +48,18 @@ const isDarkMode = computed(() => {
                 </div>
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex flex-shrink-0 items-center">
-                        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                            alt="Your Company">
+                        <img class="h-8 w-auto" src="devtoes.png" alt="Your Company">
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <router-link to="/" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                                aria-current="page">Dashboard</router-link>
+                            <router-link to="/"
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                                aria-current="page"><span class="icon">👇</span> Inicio</router-link>
                             <router-link to="/about"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</router-link>
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"><span
+                                    class="icon">👇</span>
+                                Acerca de</router-link>
                         </div>
                     </div>
                 </div>
@@ -83,11 +85,27 @@ const isDarkMode = computed(() => {
             <div class="space-y-1 px-2 pb-3 pt-2">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <router-link to="/" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
-                    aria-current="page">Dashboard</router-link>
+                    aria-current="page">Inicio</router-link>
                 <router-link to="/about"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</router-link>
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Acerca
+                    de</router-link>
 
             </div>
         </div>
     </nav>
 </template>
+
+<style scoped lang="scss">
+.icon {
+    display: none;
+}
+
+.router-link-exact-active {
+    background-color: #1A2238;
+    border-radius: 0.375rem;
+
+    .icon {
+        display: inline-block;
+    }
+}
+</style>
