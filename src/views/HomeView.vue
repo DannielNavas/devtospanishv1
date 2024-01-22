@@ -10,9 +10,10 @@ const posts = ref([]);
 
 
 const allPosts = computed(() => {
-  return posts.value.map((post: any) => {
+  return posts.value.map((post: any, index: number) => {
     return {
       ...post,
+      isFirst: index === 0 || post.published_at.split('T')[0] === new Date().toISOString().split('T')[0],
     };
   });
 });

@@ -55,9 +55,10 @@ onMounted(() => {
 });
 
 const allPostsUser = computed(() => {
-    return posts.value.map((post: any) => {
+    return posts.value.map((post: any, index) => {
         return {
             ...post,
+            isFirst: index === 0,
         };
     });
 });

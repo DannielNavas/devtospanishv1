@@ -16,10 +16,15 @@ const { name, username, profile_image, summary, website_url, location, twitter_u
 
 <template>
     <header class="h-68 w-full flex px-28 flex-col items-center">
-        <img :src="profile_image" :alt="username" class="w-28 rounded-full mt-8 " loading="lazy">
-        <h1 class="text-2xl font-bold mt-2 mb-2">{{ name }}</h1>
-        <p>{{ summary }}</p>
-        <div class="flex gap-4 mt-4 mb-3">
+        <div class="avatar mt-8">
+            <div class="w-28 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <img :src="profile_image" :alt="username" loading="lazy" class="rounded-full" />
+            </div>
+        </div>
+
+        <h1 class="text-4xl font-extrabold mt-2 mb-4">{{ name }}</h1>
+        <p class="text-lg">{{ summary }}</p>
+        <div class="flex gap-4 mt-4 mb-3 mx-auto">
             <a :href="website_url" target="_blank" rel="noopener noreferrer" v-if="website_url">
                 <IconWorldWww :size="34" />
             </a>
@@ -32,6 +37,6 @@ const { name, username, profile_image, summary, website_url, location, twitter_u
                 <IconBrandGithub :size="34" />
             </a>
         </div>
-        <p>{{ location }}</p>
+        <p class="text-gray-600">{{ location }}</p>
     </header>
 </template>

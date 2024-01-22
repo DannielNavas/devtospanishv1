@@ -13,7 +13,7 @@ const props = defineProps({
 
 const { article } = toRefs(props);
 
-const { comments_count, description, cover_image, social_image, public_reactions_count, reading_time_minutes, title, url, published_at, user } = article.value;
+const { comments_count, description, cover_image, social_image, public_reactions_count, reading_time_minutes, title, url, published_at, user, isFirst } = article.value;
 
 const { name, username } = user;
 
@@ -48,10 +48,17 @@ const dateFormat = computed(() => {
 <template>
     <a :href="url" target="_blank" rel="noopener noreferrer">
         <article class="lg:w-96 sm:w-72 h-max border-slate-800 rounded-lg border border-current p-4 dark:border-slate-50">
-            <router-link :to="`/articles-user/${username}`">
-                <p class="text-sm w-full mb-4 hover:text-slate-400">{{ name
-                }}</p>
-            </router-link>
+            <div class="flex justify-between h-auto mb-3 align-middle items-center">
+                <router-link :to="`/profile/${username}`">
+                    <p class="text-sm w-full  hover:text-slate-400">
+                        {{ name }}
+                    </p>
+                </router-link>
+                <span
+                    class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400"
+                    v-if="isFirst">Nuevo</span>
+            </div>
+
             <img :src="cover_image ?? social_image" :alt="title" class="w-full h-36 object-fill rounded-lg" loading="lazy">
             <div class="flex justify-between items-center mt-3">
                 <p class="text-xs">{{ dateFormat }}</p>

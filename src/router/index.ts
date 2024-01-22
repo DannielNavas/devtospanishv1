@@ -19,7 +19,7 @@ const router = createRouter({
     },
     {
       // all article to user
-      path: '/articles-user/:username',
+      path: '/profile/:username',
       name: 'articles',
       component: () => import('../views/ArticlesUserView.vue'),
       props: (route) => {
