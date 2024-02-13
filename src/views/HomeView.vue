@@ -47,6 +47,9 @@ const onCancel = () => {
           {{ article ? article.title : 'Cargando...' }}
         </template>
       </Card>
+      <a href="https://librecounter.org/referer/show" target="_blank">
+        <img src="https://librecounter.org/counter.svg" referrerPolicy="unsafe-url" width="0" />
+      </a>
     </main>
   </Suspense>
 </template>
